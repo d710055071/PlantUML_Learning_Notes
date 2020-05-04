@@ -1,0 +1,4 @@
+@startuml
+note "用一条带空心箭头的虚线表示" as N
+ClassA ..|> ClassB :A 实现 B
+@enduml

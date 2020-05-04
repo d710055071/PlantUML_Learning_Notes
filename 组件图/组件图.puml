@@ -1,0 +1,127 @@
+@startuml
+/'
+    组件:
+        组件是系统中实际存在的可更换部分，它实现特定的功能，符合一套
+        接口标准并实现一组接口。组件代表系统中的一部分物理实施，包括
+        软件代码 或其等价物。
+        建模过程中，我们通过组件这一元素对分析设计过程中的类、接口等
+        进行逻辑分类，一个组件表达软件的一组功能。
+        一个类可能被分派多个组件以完成该组件的功能，当组件被编译或打
+        包成一个物理文件时，每个组件都拥有这个类的一个拷贝或者引用该
+        类的途径。
+        组件特性:
+            1.完备性:组件包含一些类和接口，一个组件应当能够完成一项或一组
+            特定的业务目标。
+            2.独立性:组件应当是可以独立部署的，与其他组件无依赖关系，最多
+            保持关联关系。
+            3.逻辑性:组件是从软件构件设计的观点来定义的，并非从需求中可以
+            直接导出。
+            4.透明性:组件的修改应该只涉及组件的定义以及组件中所包含的类的
+            重新指定，而不应当导致类的修改。
+            使用组件:
+                分布式应用
+                应用集成
+                第三方系统
+                SOA服务(Service Oriented Architecture) 面向服务的架构
+    包:
+        包是一种容器，如同文件夹一样，它将某些信息分类，形成逻辑单元。使用包的目的
+        是为了整合复杂的信息，某些语义上相关或者某方面具有共同点的信息都可以分包。
+        包是UML非常常用的一个元素，它最主要的作用就是容纳并为其他元素分类。包可以
+        容纳任何UML元素。
+            1.高内聚的性质
+            2.无依赖关系或松耦合关系
+            3.包之间的依赖关系不会被传递
+            4.依赖关系应该是单向的
+
+            常用包的版型
+                1.领域包        :领域包用于分类业务领域内的业务单元，每个包代表
+                    业务的一个领域，领域包视图可用于展示这些业务领域的高层此关系。
+                2.子系统        :它用于分类系统内的逻辑对象并形成子系统。
+                3.组织结构      :组织结构包用于分类业务领域中的组织结构，它可以
+                    直接用来表述企业的组织结构。
+                4.层(Layer)    :层包用于分类软件中的层次。
+    节点:
+        节点是带有至少一个处理器、内存以及可能还带有其他设备的处理元素。
+        在实际工作中，一般来说服务器、工作站或客户机都可以被称为一个节点。
+
+'/
+
+/'
+    组件定义
+    1.组件必须使用中括号括起来
+    2.使用关键字 component 定义一个组件
+    3.并且还可以使用关键字as定义一个别名
+'/
+
+/'
+    接口定义
+    1.接口可以使用()来定义(因为这个看起来像个圆)。
+    2.还可以使用关键字interface关键字来定义接口。
+    3.并且还可以使用关键字as定义一个别名。 
+'/
+
+/'
+    组合组件
+    你可以使用多个关键字将组件和接口组合在一起。
+    1.package           包
+    2.node              节点
+    3.folder            文件夹
+    4.frame
+    5.cloud             云
+    6.database          数据库
+'/
+[组件甲]
+component 组件乙 #Yellow
+
+component 组件丙[
+This component
+has a long comment
+on several lines
+]
+'注释
+'note left of , note right of , note top of , note bottom of
+
+'默认情况下，对象之间用--连接，并且连接是竖直的。
+'不过可以使用一个横线或者点设置水平方向的连接，就行这样：
+
+[ComponentY] --> Interface3
+[ComponentY] -> Interface4
+'也可以使用反向连接：
+Interface1 <-- [Component]
+Interface2 <- [Component]
+'还可以使用关键字left, right, up or down改变箭头方向。
+[ComponentX] -left-> left
+[ComponentX] -right-> right
+[ComponentX] -up-> up
+[ComponentX] -down-> down
+
+package "Some Group" {
+  HTTP - [First Component]
+  [Another Component]
+}
+
+node "Other Groups" {
+  FTP - [Second Component]
+  [First Component] --> FTP
+}
+
+cloud {
+  [Example 1]
+}
+
+
+database "MySql" {
+  folder "This is my folder" {
+    [Folder 3]
+  }
+  frame "Foo" {
+    [Frame 4]
+  }
+}
+
+
+[Another Component] --> [Example 1]
+[Example 1] --> [Folder 3]
+[Folder 3] --> [Frame 4]
+
+@enduml

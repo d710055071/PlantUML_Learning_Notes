@@ -1,0 +1,21 @@
+@startuml
+' 用例
+' 用例用圆括号括起来。
+' 也可以用关键字usecase来定义用例。 
+' 还可以用关键字as定义一个别名，这个别名可以在以后定义关系的时候使用。
+' 角色
+' 角色用两个冒号包裹起来。
+' 也可以用actor关键字来定义角色。 
+' 还可以用关键字as来定义一个别名，这个别名可以在以后定义关系的时候使用。
+left to right direction
+'用skinparam改变字体和颜色。
+skinparam packageStyle rectangle
+actor customer
+actor clerk
+rectangle checkout {
+  customer -- (checkout)
+  (checkout) .> (payment) : include
+  (help) .> (checkout) : extends
+  (checkout) -- clerk
+}
+@enduml

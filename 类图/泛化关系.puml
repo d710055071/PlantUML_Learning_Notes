@@ -1,0 +1,8 @@
+@startuml
+/' 
+泛化关系 : 用一条带空心箭头的直线表示
+'/
+Class基类 <|-- Class派生类 : 类A 继承于 类B
+note " 泛化关系用一条\n带空心箭头的直线表示 " as N基类
+Class基类 .. N基类
+@enduml
